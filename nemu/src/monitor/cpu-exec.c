@@ -36,6 +36,7 @@ void do_int3() {
 
 /* Simulate how the CPU works. */
 void cpu_exec(volatile uint32_t n) {
+	//if we call cpu_exec(-1) , it will run all the instrs untill end.
 	if(nemu_state == END) {
 		printf("Program execution has ended. To restart the program, exit NEMU and run again.\n");
 		return;
@@ -73,7 +74,7 @@ void cpu_exec(volatile uint32_t n) {
 #endif
 
 		/* TODO: check watchpoints here. */
-		printf("%d\n", n);
+		//printf("%d\n", n);
 
 		if(nemu_state != RUNNING) { return; }
 	}
