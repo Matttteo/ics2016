@@ -49,7 +49,11 @@ static int cmd_si(char *args){
 	return 0;
 }
 static void print_registers(){
-	printf("%-10s%-#10x%-5d\n","eax",cpu.eax, cpu.eax );
+
+	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
+	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
+	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
+	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
 }
 static int cmd_info(char *args){
 	switch(args[0]){
