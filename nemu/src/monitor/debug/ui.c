@@ -35,12 +35,34 @@ static int cmd_c(char *args) {
 static int cmd_q(char *args) {
 	return -1;
 }
+
+static int cmd_help(char *args);
+
+
+//My code
 static int cmd_si(char *args){
+	/* Do the single step excutions
+	   Use the atoi(char*) function, include in <stdlib.h>
+	*/
 	int n = atoi(args);
 	cpu_exec(n);
 	return 0;
 }
-static int cmd_help(char *args);
+static void print_registers(){
+	printf("%-10s%-#10x%-5d\n","eax",cpu.eax, cpu.eax );
+}
+static int cmd_info(char *args){
+	switch(args[0]){
+		case 'r':
+			//Print registers
+			print_registers();
+			break;
+		default:
+			printf("No implements\n");
+			break;
+	}
+	return 0;
+}
 
 static struct {
 	char *name;
@@ -52,7 +74,7 @@ static struct {
 	{ "q", "Exit NEMU", cmd_q },
 	/* TODO: Add more commands */
 	{ "si", "Single step execution", cmd_si },
-
+	{ "info", "Print informations", cmd_info },
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
