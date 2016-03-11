@@ -41,7 +41,8 @@ static int cmd_help(char *args);
 
 //My code
 static int cmd_si(char *args){
-	/* Do the single step excutions
+	/* 
+	   Do the single step excutions
 	   Use the atoi(char*) function, include in <stdlib.h>
 	*/
 	int n = atoi(args);
@@ -49,11 +50,15 @@ static int cmd_si(char *args){
 	return 0;
 }
 static void print_registers(){
-
 	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
-	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
-	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
-	printf("%-10s%-#20x%-5d\n","eax",cpu.eax, cpu.eax );
+	printf("%-10s%-#20x%-5d\n","ecx",cpu.ecx, cpu.ecx );
+	printf("%-10s%-#20x%-5d\n","edx",cpu.edx, cpu.edx );
+	printf("%-10s%-#20x%-5d\n","ebx",cpu.ebx, cpu.ebx );
+	printf("%-10s%-#20x%-5d\n","esp",cpu.esp, cpu.esp );
+	printf("%-10s%-#20x%-5d\n","ebp",cpu.ebp, cpu.ebp );
+	printf("%-10s%-#20x%-5d\n","esi",cpu.esi, cpu.esi );
+	printf("%-10s%-#20x%-5d\n","edi",cpu.edi, cpu.edi );
+	printf("%-10s%-#20x%-5d\n","eip",cpu.ebx, cpu.ebx );
 }
 static int cmd_info(char *args){
 	switch(args[0]){
