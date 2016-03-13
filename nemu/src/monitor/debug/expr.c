@@ -95,6 +95,8 @@ static bool make_token(char *e) {
 						tokens[j].type = '+';
 						j++;
 						break;
+					case ' ':
+						break;
 					default: panic("please implement me");
 				}
 
