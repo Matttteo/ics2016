@@ -91,7 +91,7 @@ static bool make_token(char *e) {
 						strncpy(tokens[j].str, e + position - substr_len, substr_len);
 						j++;
 						break;
-					case '+':
+					case PLUS:
 						tokens[j].type = PLUS;
 						printf("fucky\n");
 						j++;
