@@ -87,10 +87,10 @@ static int cmd_x(char *args){
 	int add = (int) strtol(address, NULL, 16);
 
 	int i;
-	printf("%#16x:", add);
+	printf("%#12x:", add);
 	for(i = 0; i < num; ++i){
 		int m = swaddr_read(add + 4 * i, 4);
-		printf("%#16x", m);
+		printf("%#12x", m);
 	}
 	printf("\n");
 	return 0;
