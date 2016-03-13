@@ -8,7 +8,6 @@
 #include <readline/history.h>
 
 void cpu_exec(uint32_t);
-
 /* We use the ``readline'' library to provide more flexibility to read from stdin. */
 char* rl_gets() {
 	static char *line_read = NULL;
@@ -84,8 +83,13 @@ static int cmd_x(char *args){
 		return -1;
 	}
 	int num = atoi(N);
-	int add = (int) strtol(address, NULL, 16);
-
+	//int add = (int) strtol(address, NULL, 16);
+	bool sucess = false;
+	int add = expr(address, &sucess);
+	if(!sucess){
+		printf("Invalid address.\n");
+		return -1;
+	}
 	int i;
 	printf("%#12x:", add);
 	for(i = 0; i < num; ++i){
