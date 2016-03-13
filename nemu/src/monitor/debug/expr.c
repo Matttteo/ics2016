@@ -26,8 +26,8 @@ static struct rule {
 	{"\\+", '+'},					// plus
 	{"==", EQ},						// equal
 	{"[0-9]+", NUM},
-	{"(", L_PAR},
-	{")", R_PAR},
+	{"\\(", L_PAR},
+	{"\\)", R_PAR},
 	{"-", MINUS},
 	{"*", MULT},
 	{"/", DIV},
