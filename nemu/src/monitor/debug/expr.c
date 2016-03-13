@@ -60,6 +60,7 @@ int nr_token;
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
+	int j = 0;
 	regmatch_t pmatch;
 	
 	nr_token = 0;
@@ -81,7 +82,13 @@ static bool make_token(char *e) {
 
 				switch(rules[i].token_type) {
 					case NUM:
-						printf("%sxxxx\n",e);
+						tokens[j].type = NUM;
+						strncpy(tokens[j].str, e + position - substr_len, substr_len);
+						j++;
+						break;
+					case '+':
+						tokens[j].type = '+';
+						j++;
 						break;
 					default: panic("please implement me");
 				}
