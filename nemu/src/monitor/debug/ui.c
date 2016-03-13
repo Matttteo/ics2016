@@ -84,7 +84,7 @@ static int cmd_x(char *args){
 	}
 	int num = atoi(N);
 	//int add = (int) strtol(address, NULL, 16);
-	bool sucess = false;
+	bool sucess = true;
 	int add = expr(address, &sucess);
 	if(!sucess){
 		printf("Invalid address.\n");
