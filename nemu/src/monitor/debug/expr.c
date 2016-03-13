@@ -28,9 +28,9 @@ static struct rule {
 	{"[0-9]+", NUM},
 	{"\\(", L_PAR},
 	{"\\)", R_PAR},
-	{"-", MINUS},
-	{"*", MULT},
-	{"/", DIV},
+	{"\\-", MINUS},
+	{"\\*", MULT},
+	{"\\/", DIV},
 };
 
 #define NR_REGEX (sizeof(rules) / sizeof(rules[0]) )
