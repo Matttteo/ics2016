@@ -81,7 +81,7 @@ static bool make_token(char *e) {
 
 				switch(rules[i].token_type) {
 					case NUM:
-						printf("%s\n",e);
+						printf("%sxxxx\n",e);
 						break;
 					default: panic("please implement me");
 				}
