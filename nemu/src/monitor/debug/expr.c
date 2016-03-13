@@ -73,7 +73,6 @@ static int eval(int bg, int ed){
 		}
 		else{
 			int res = atoi(tokens[bg].str);
-			printf("%sxxxx\n", tokens[bg].str);
 			return res;
 		}
 	}
