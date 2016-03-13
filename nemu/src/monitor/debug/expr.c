@@ -61,7 +61,13 @@ typedef struct token {
 
 Token tokens[32];
 int nr_token;
-
+static int eval(Token tokens[], int bg, int ed){
+	if(bg > ed){
+		Assert(0, "Bad expression.\n");
+		return 0;
+	}
+	return 0;
+}
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
@@ -92,8 +98,8 @@ static bool make_token(char *e) {
 						j++;
 						break;
 					case PLUS:
+						eval(tokens,1,0);
 						tokens[j].type = PLUS;
-						printf("fucky\n");
 						j++;
 						break;
 					case NOTYPE:
