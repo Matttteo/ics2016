@@ -61,17 +61,26 @@ typedef struct token {
 
 Token tokens[32];
 int nr_token;
-static int eval(Token tokens[], int bg, int ed){
+static int eval(int bg, int ed){
 	if(bg > ed){
 		Assert(0, "Bad expression.\n");
-		return 0;
+		return -1;
+	}
+	if(bg == ed){
+		if(tokens[bg].type != NUM){
+			Assert(0, "Bad expression.\n");
+			return -1;
+		}
+		else{
+			int res = atoi(tokens[bg].str);
+			return res;
+		}
 	}
 	return 0;
 }
 static bool make_token(char *e) {
 	int position = 0;
 	int i;
-	int j = 0;
 	regmatch_t pmatch;
 	
 	nr_token = 0;
@@ -93,24 +102,23 @@ static bool make_token(char *e) {
 
 				switch(rules[i].token_type) {
 					case NUM:
-						tokens[j].type = NUM;
-						strncpy(tokens[j].str, e + position - substr_len, substr_len);
-						j++;
+						tokens[nr_token].type = NUM;
+						strncpy(tokens[nr_token].str, e + position - substr_len, substr_len);
+						nr_token++;
 						break;
 					case PLUS:
-						eval(tokens,1,0);
-						tokens[j].type = PLUS;
-						j++;
+						tokens[nr_token].type = PLUS;
+						nr_token++;
 						break;
 					case NOTYPE:
 						break;
 					case L_PAR:
-						tokens[j].type = L_PAR;
-						j++;
+						tokens[nr_token].type = L_PAR;
+						nr_token++;
 						break;
 					case R_PAR:
-						tokens[j].type = R_PAR;
-						j++;
+						tokens[nr_token].type = R_PAR;
+						nr_token++;
 						break;
 					default: panic("please implement me");
 				}
@@ -133,7 +141,7 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-
+	eval(0 ,nr_token);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
 	return 0;
