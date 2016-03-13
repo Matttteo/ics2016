@@ -90,7 +90,6 @@ static bool check_parenthese(int bg, int ed){
 	else return false;
 }
 static int eval(int bg, int ed){
-	printf("%d\t%d\n",bg,ed );
 	if(bg > ed){
 		Assert(0, "Bad expression.\n");
 		return -1;
@@ -106,7 +105,7 @@ static int eval(int bg, int ed){
 		}
 	}
 	else if(check_parenthese(bg, ed)){
-		return eval(bg + 1, ed + 1);
+		return eval(bg + 1, ed - 1);
 	}
 	else{
 		int dominator = -1;
