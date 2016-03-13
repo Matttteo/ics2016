@@ -98,7 +98,14 @@ static bool make_token(char *e) {
 						break;
 					case NOTYPE:
 						break;
-
+					case L_PAR:
+						tokens[j].type = L_PAR;
+						j++;
+						break;
+					case R_PAR:
+						tokens[j].type = R_PAR;
+						j++;
+						break;
 					default: panic("please implement me");
 				}
 
