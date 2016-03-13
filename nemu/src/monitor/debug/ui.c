@@ -72,7 +72,28 @@ static int cmd_info(char *args){
 	}
 	return 0;
 }
+static int cmd_x(char *args){
+	char *N = strtok(args," ");
+	char *address = N + strlen(N) + 1;
+	if(N == NULL){
+		printf("Please Enter a number.\n");
+		return -1;
+	}
+	if(address == NULL){
+		printf("Please enter a correct address.\n");
+		return -1;
+	}
+	int num = atoi(N);
+	int add = (int) strtol(address, NULL, 16);
 
+	int i;
+	printf("%-#20x:", add);
+	for(i = 0; i < num; ++i){
+		int m = swaddr_read(add + 4 * i, 4);
+		printf("%-#20x", m);
+	}
+	return 0;
+}
 static struct {
 	char *name;
 	char *description;
@@ -84,6 +105,7 @@ static struct {
 	/* TODO: Add more commands */
 	{ "si", "Single step execution", cmd_si },
 	{ "info", "Print informations", cmd_info },
+	{ "x", "Print memory", cmd_x},
 };
 
 #define NR_CMD (sizeof(cmd_table) / sizeof(cmd_table[0]))
@@ -123,6 +145,7 @@ void ui_mainloop() {
 		/* treat the remaining string as the arguments,
 		 * which may need further parsing
 		 */
+
 		char *args = cmd + strlen(cmd) + 1;
 		if(args >= str_end) {
 			args = NULL;
