@@ -90,7 +90,7 @@ static int cmd_x(char *args){
 	printf("%#16x:", add);
 	for(i = 0; i < num; ++i){
 		int m = swaddr_read(add + 4 * i, 4);
-		printf("%-#16x", m);
+		printf("%#16x", m);
 	}
 	printf("\n");
 	return 0;
