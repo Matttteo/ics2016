@@ -61,12 +61,40 @@ typedef struct token {
 
 Token tokens[32];
 int nr_token;
+static bool check_parenthese(int bg, int ed){
+	int x = 0;
+	int i;
+	for ( i = bg; i <= ed; ++i)
+	{
+		if(tokens[i].type == L_PAR){
+			x++;
+			continue;
+		}
+		else if(tokens[i].type == R_PAR){
+			x--;
+			if(x < 0){
+				Assert(0, "Invalid expression\n");
+			}
+			continue;
+		}
+		else{
+			continue;
+		}
+	}
+	if(x != 0){
+		Assert(0, "Invalid expression\n");
+	}
+	else if(tokens[bg].type == L_PAR &&tokens[ed].type == R_PAR){
+		return true;
+	}
+	else return false;
+}
 static int eval(int bg, int ed){
 	if(bg > ed){
 		Assert(0, "Bad expression.\n");
 		return -1;
 	}
-	if(bg == ed){
+	else if(bg == ed){
 		if(tokens[bg].type != NUM){
 			Assert(0, "Bad expression.\n");
 			return -1;
@@ -74,6 +102,60 @@ static int eval(int bg, int ed){
 		else{
 			int res = atoi(tokens[bg].str);
 			return res;
+		}
+	}
+	else if(check_parenthese(bg, ed)){
+		return eval(bg + 1, ed + 1);
+	}
+	else{
+		int dominator = -1;
+		int dominator_idx = 0;
+		int i = bg;
+		while(i<=ed){
+			if(tokens[i].type == L_PAR){
+				int num_par = 1;
+				i++;
+				while(i <= ed && num_par){
+					if(tokens[i].type == L_PAR){
+						num_par++;
+						i++;
+					}
+					else if(tokens[i].type == R_PAR){
+						num_par--;
+						i++;
+					}
+					else{
+						i++;
+					}
+				}
+			}
+			else if(tokens[i].type == NUM){
+				i++;
+			}
+			else{
+				if(tokens[i].type >= dominator){
+					dominator = tokens[i].type;
+					dominator_idx = i;
+					i++;
+				}
+			}
+		}
+		int left = eval(bg, dominator_idx-1);
+		int right = eval(dominator_idx+1, ed);
+		switch (dominator){
+			case PLUS:
+				return left + right;
+				break;
+			case MINUS:
+				return left - right;
+				break;
+			case MULT:
+				return left * right;
+				break;
+			case DIV:
+				return left / right;
+			case EQ:
+				return left == right;
 		}
 	}
 	return 0;
