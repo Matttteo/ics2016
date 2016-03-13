@@ -58,7 +58,7 @@ static void print_registers(){
 	printf("%-10s%-#20x%-5d\n","ebp",cpu.ebp, cpu.ebp );
 	printf("%-10s%-#20x%-5d\n","esi",cpu.esi, cpu.esi );
 	printf("%-10s%-#20x%-5d\n\n","edi",cpu.edi, cpu.edi );
-	printf("%-10s%-#20x%-5d\n","eip",cpu.ebx, cpu.ebx );
+	printf("%-10s%-#20x%-5d\n","eip",cpu.eip, cpu.eip );
 }
 static int cmd_info(char *args){
 	switch(args[0]){
