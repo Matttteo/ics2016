@@ -202,6 +202,10 @@ static bool make_token(char *e) {
 						tokens[nr_token].type = R_PAR;
 						nr_token++;
 						break;
+					case MINUS:
+						tokens[nr_token].type = MINUS;
+						nr_token++;
+						break;
 					default: panic("please implement me");
 				}
 
