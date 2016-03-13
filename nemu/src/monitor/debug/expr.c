@@ -5,7 +5,7 @@
  */
 #include <sys/types.h>
 #include <regex.h>
-
+#include <stdlib.h>
 enum {
 	NOTYPE = 256,PLUS,  EQ, NUM, L_PAR, R_PAR, MINUS, MULT, DIV
 
@@ -89,7 +89,14 @@ static bool check_parenthese(int bg, int ed){
 	}
 	else return false;
 }
+
 static int eval(int bg, int ed){
+	/*
+	* Imply the expression
+	* TODO:
+	* 1. Meet a invalid expression, shoud not abort
+	* 2. Code should be more concise
+	*/
 	if(bg > ed){
 		Assert(0, "Bad expression.\n");
 		return -1;
@@ -113,6 +120,7 @@ static int eval(int bg, int ed){
 		int i = bg;
 		while(i<=ed){
 			if(tokens[i].type == L_PAR){
+				// jump out of any parentheses
 				int num_par = 1;
 				i++;
 				while(i <= ed && num_par){
@@ -204,6 +212,14 @@ static bool make_token(char *e) {
 						break;
 					case MINUS:
 						tokens[nr_token].type = MINUS;
+						nr_token++;
+						break;
+					case MULT:
+						tokens[nr_token].type = MULT;
+						nr_token++;
+						break;
+					case DIV:
+						tokens[nr_token].type = DIV;
 						nr_token++;
 						break;
 					default: panic("please implement me");
