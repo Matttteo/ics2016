@@ -73,6 +73,7 @@ static int eval(int bg, int ed){
 		}
 		else{
 			int res = atoi(tokens[bg].str);
+			printf("%s\n", tokens[bg].str);
 			return res;
 		}
 	}
@@ -141,7 +142,6 @@ uint32_t expr(char *e, bool *success) {
 		*success = false;
 		return 0;
 	}
-	printf("ssss\n");
 	return eval(0 ,nr_token);
 	/* TODO: Insert codes to evaluate the expression. */
 	panic("please implement me");
