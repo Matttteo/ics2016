@@ -73,6 +73,7 @@ static bool check_parenthese(int bg, int ed){
 		else if(tokens[i].type == R_PAR){
 			x--;
 			if(x < 0){
+				printf("%d\n", x);
 				Assert(0, "Invalid expression\n");
 			}
 			continue;
