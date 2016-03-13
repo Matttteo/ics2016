@@ -96,7 +96,7 @@ static bool make_token(char *e) {
 						printf("fucky\n");
 						j++;
 						break;
-					case ' ':
+					case NOTYPE:
 						break;
 
 					default: panic("please implement me");
