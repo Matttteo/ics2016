@@ -93,10 +93,12 @@ static bool make_token(char *e) {
 						break;
 					case '+':
 						tokens[j].type = '+';
+						printf("fucky\n");
 						j++;
 						break;
 					case ' ':
 						break;
+
 					default: panic("please implement me");
 				}
 
