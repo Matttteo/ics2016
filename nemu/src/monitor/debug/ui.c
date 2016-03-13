@@ -76,7 +76,7 @@ static int cmd_x(char *args){
 	char *address = N + strlen(N) + 1;
 	if(N == NULL){
 		printf("Please Enter a number.\n");
-		return -1;
+		return 0;
 	}
 	if(address == NULL){
 		printf("Please enter a correct address.\n");
@@ -88,7 +88,7 @@ static int cmd_x(char *args){
 	int add = expr(address, &sucess);
 	if(!sucess){
 		printf("Invalid address.\n");
-		return -1;
+		return 0;
 	}
 	int i;
 	printf("%#12x:", add);
