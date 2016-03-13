@@ -92,7 +92,7 @@ static bool make_token(char *e) {
 						j++;
 						break;
 					case '+':
-						tokens[j].type = '+';
+						tokens[j].type = PLUS;
 						printf("fucky\n");
 						j++;
 						break;
